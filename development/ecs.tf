@@ -40,7 +40,7 @@ resource "aws_ecs_service" "cron" {
   name                               = "cron"
   cluster                            = aws_ecs_cluster.main.arn
   task_definition                    = aws_ecs_task_definition.cron.arn
-  desired_count                      = 1
+  desired_count                      = 0
   launch_type                        = "FARGATE"
   deployment_minimum_healthy_percent = 50
 

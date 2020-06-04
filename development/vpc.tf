@@ -28,11 +28,16 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.main.id
   }
 
-  lifecycle {
-    ignore_changes = [
-      route,
-    ]
+  route {
+    cidr_block                = "172.31.0.0/16"
+    vpc_peering_connection_id = data.terraform_remote_state.common.outputs.aws_vpc_peering_connection_id_dev
   }
+
+  # lifecycle {
+  #   ignore_changes = [
+  #     route,
+  #   ]
+  # }
 
   tags = {
     Name  = "${var.project}-${var.env}-public"
@@ -43,7 +48,10 @@ resource "aws_route_table" "public" {
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
 
-
+  route {
+    cidr_block                = "172.31.0.0/16"
+    vpc_peering_connection_id = data.terraform_remote_state.common.outputs.aws_vpc_peering_connection_id_dev
+  }
 
   # lifecycle {
   #   ignore_changes = [

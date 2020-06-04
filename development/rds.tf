@@ -25,7 +25,7 @@ resource "aws_rds_cluster_instance" "aurora_cluster_instance" {
   identifier              = "${var.project}-${var.env}-aurora-instance-${count.index}"
   cluster_identifier      = aws_rds_cluster.aurora_cluster.id
   engine                  = "aurora-mysql"
-  instance_class          = "db.t3.small"
+  instance_class          = "db.t2.small"
   db_subnet_group_name    = aws_db_subnet_group.main.name
   db_parameter_group_name = aws_db_parameter_group.main.name
   publicly_accessible     = false
